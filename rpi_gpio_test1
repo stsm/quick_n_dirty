@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+
+import time
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(13, GPIO.IN,pull_up_down=GPIO.PUD_UP)
+
+def print_info(f_dbg_level, f_stage, f_text):
+        print('[' + time.ctime() + ']: [' + f_stage + '] | ' + f_text)
+
+i = 0
+
+while True:
+    time.sleep(0.234)
+    inputValue = GPIO.input(13)
+    if (inputValue == False):
+        i = i + 1
+        print_info("0","info","Button pressed " + str(i))
